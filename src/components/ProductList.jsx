@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard";
-import { useState, useEffect, startTransition } from "react";
+import { useState, useEffect } from "react";
 
 
 const ProductList = () => {
@@ -15,10 +15,7 @@ const ProductList = () => {
     }
     const data = await response.json();
     console.log(data);
-    // startTransition will set a lower priority to the render of the component. Sets
-    // a normal priority vs higher priority.
-    startTransition(() => setProducts(data.results))
-    // return setProducts(data.results);
+    return setProducts(data.results);
   }
 
   useEffect(() => {
