@@ -1,9 +1,9 @@
 import InputLoader from './InputLoader';
-import ProductsLoader from './ProductsLoader';
+import ObjectsLoader from './ObjectsLoader';
 import UsersLoader from './UsersLoader';
 
 export {
   InputLoader,
-  ProductsLoader,
+  ObjectsLoader,
   UsersLoader
 }

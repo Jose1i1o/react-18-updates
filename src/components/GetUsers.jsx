@@ -1,35 +1,45 @@
 import { useState, useEffect } from "react";
 
 const GetUsers = () => {
-
-  const [ users, setUsers ] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
-
-    const response = await fetch('https://reqres.in/api/users');
+    // const response = await fetch("https://finalspaceapi.com/api/v0/character/");
+    const response = await fetch(
+      // fake api with id, name, origin, and species
+      
+      
+    )
     if (!response.ok) {
-      throw new Error('Error while fetching users');
+      throw new Error("Error while fetching users");
     }
     const data = await response.json();
-    return setUsers(data.data);
-  }
+    const limitedUsers = data.slice(0, 10);
+    return setUsers(limitedUsers);
+  };
 
   useEffect(() => {
     fetchUsers();
-  } , []);
+  }, []);
 
   return (
     <>
-      <div className="users">
-        {users?.map(user => (
-          <div key={user.id}>
-            <h3>{user.first_name} {user.last_name}</h3>
-            <img src={user.avatar} alt={user.first_name} />
+      <div className="space_cards">
+        {users?.map((user) => (
+          <div key={user.id} className="card">
+            <div className="imgBox">
+              <img src={user.img_url} alt={user.alias} />
+            </div>
+            <div className="contentBox">
+              <p>Name: {user.name}</p>
+              <p>Origin: {user.origin}</p>
+              <p>Species: {user.species}</p>
+            </div>
           </div>
         ))}
       </div>
     </>
-  )
-}
+  );
+};
 
 export default GetUsers;
